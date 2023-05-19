@@ -1,0 +1,7 @@
+{
+    "name": "vpunch-vbob",
+    "files": {
+        "lua/packages/vpunch-vbob/package.lua": "https://raw.githubusercontent.com/toxidroma/vpunch-vbob/main/lua/packages/vpunch-vbob/package.lua",
+        "lua/packages/vpunch-vbob/init.lua": "https://raw.githubusercontent.com/toxidroma/vpunch-vbob/main/lua/packages/vpunch-vbob/init.lua"
+    }
+}
