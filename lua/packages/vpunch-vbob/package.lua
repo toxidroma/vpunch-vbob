@@ -1,5 +1,5 @@
 name = 'vpunch-vbob'
-cl_main = 'punchbob.lua'
-version = '000201'
+main = 'punchbob.moon'
+version = '000102'
 autorun = true
 logger = true
