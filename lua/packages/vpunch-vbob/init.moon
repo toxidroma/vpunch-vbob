@@ -1,8 +1,7 @@
+local Punch
+install(gpm.LocatePackage('vpunch-local', 'https://github.com/toxidroma/vpunch-local'), true)\Then (pkg) ->
+    import \Punch from pkg\GetResult! if CLIENT
 if CLIENT
-    local Punch
-    install(gpm.LocatePackage('vpunch-local', 'https://github.com/toxidroma/vpunch-local'), true)\Then (pkg) ->
-        import \Punch from pkg\GetResult!
-        
     import sin, cos, random, Rand from math
     Multipliers     = {}
     EnabledTypes    = {}
