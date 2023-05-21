@@ -1,13 +1,20 @@
 if CLIENT then
-  local vplocal = require('vpunch-local', 'https://github.com/toxidroma/vpunch-local')
   local Punch
-  do
-    local _base_0 = vplocal
-    local _fn_0 = _base_0.Punch
-    Punch = function(...)
-      return _fn_0(_base_0, ...)
+  install(gpm.LocatePackage('vpunch-local', 'https://github.com/toxidroma/vpunch-local'), true):Then(function(pkg)
+    do
+      local _base_0 = pkg
+      local _fn_0 = _base_0.GetResult
+      do
+        local _base_1 = function(...)
+          return _fn_0(_base_0, ...)
+        end
+        local _fn_1 = _base_1.Punch
+        Punch = function(...)
+          return _fn_1(_base_1, ...)
+        end
+      end
     end
-  end
+  end)
   local sin, cos, random, Rand
   do
     local _obj_0 = math
@@ -192,7 +199,7 @@ if CLIENT then
   local NextNoise = CurTime()
   local Sway = Angle()
   local SwayLast = Sway
-  return hook.Add('Think', tostring(_PKG), function()
+  hook.Add('Think', tostring(_PKG), function()
     local ply = LocalPlayer()
     if ply:InVehicle() then
       return 
@@ -254,3 +261,4 @@ if CLIENT then
     return nil
   end)
 end
+return nil

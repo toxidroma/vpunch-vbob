@@ -1,8 +1,9 @@
 if CLIENT
-    vplocal = require 'vpunch-local', 'https://github.com/toxidroma/vpunch-local'
-    import \Punch from vplocal
+    local Punch
+    install(gpm.LocatePackage('vpunch-local', 'https://github.com/toxidroma/vpunch-local'), true)\Then (pkg) ->
+        import \Punch from pkg\GetResult
+        
     import sin, cos, random, Rand from math
-
     Multipliers     = {}
     EnabledTypes    = {}
     for t in *{'slow', 'normal', 'run', 
