@@ -2,16 +2,10 @@ if CLIENT then
   local Punch
   install(gpm.LocatePackage('vpunch-local', 'https://github.com/toxidroma/vpunch-local'), true):Then(function(pkg)
     do
-      local _base_0 = pkg
-      local _fn_0 = _base_0.GetResult
-      do
-        local _base_1 = function(...)
-          return _fn_0(_base_0, ...)
-        end
-        local _fn_1 = _base_1.Punch
-        Punch = function(...)
-          return _fn_1(_base_1, ...)
-        end
+      local _base_0 = pkg:GetResult()
+      local _fn_0 = _base_0.Punch
+      Punch = function(...)
+        return _fn_0(_base_0, ...)
       end
     end
   end)
