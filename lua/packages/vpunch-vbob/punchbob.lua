@@ -1,4 +1,4 @@
-local vplocal = conjure(gpm.PackageExists('packages/vpunch-local') and 'packages/vpunch-local' or 'https://github.com/toxidroma/vpunch-local')
+local vplocal = require('vpunch-local', 'https://github.com/toxidroma/vpunch-local')
 local Punch
 do
   local _base_0 = vplocal

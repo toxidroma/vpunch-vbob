@@ -1,4 +1,4 @@
-vplocal = conjure gpm.PackageExists('packages/vpunch-local') and 'packages/vpunch-local' or 'https://github.com/toxidroma/vpunch-local'
+vplocal = require 'vpunch-local', 'https://github.com/toxidroma/vpunch-local'
 import \Punch from vplocal
 import sin, cos, random, Rand from math
 
