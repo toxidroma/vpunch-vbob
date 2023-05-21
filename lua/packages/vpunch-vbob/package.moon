@@ -1,6 +1,6 @@
 export *
 name    = 'vpunch-vbob'
-main    = 'punchbob.moon'
-version = '000102'
+main    = 'punchbob.lua'
+version = 000102
 autorun = true
 logger  = true
