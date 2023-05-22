@@ -216,9 +216,9 @@ if CLIENT then
             return .5
           elseif 'run' == _exp_0 then
             return .65
-          else
-            return 0
           end
+        else
+          return 0
         end
       end)()
       if not (multMove <= 0) then

@@ -166,8 +166,8 @@ if CLIENT
                         .5
                     when 'run'
                         .65
-                    else
-                        0
+            else
+                0
 
             unless multMove <= 0
                 with ply
