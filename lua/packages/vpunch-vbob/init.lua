@@ -1,14 +1,12 @@
+local Punch
+do
+  local _base_0 = require('packages/vpunch-local', 'https://github.com/toxidroma/vpunch-local')
+  local _fn_0 = _base_0.Punch
+  Punch = function(...)
+    return _fn_0(_base_0, ...)
+  end
+end
 if CLIENT then
-  local Punch
-  install(gpm.LocatePackage('vpunch-local', 'https://github.com/toxidroma/vpunch-local'), true):Then(function(pkg)
-    do
-      local _base_0 = pkg:GetResult()
-      local _fn_0 = _base_0.Punch
-      Punch = function(...)
-        return _fn_0(_base_0, ...)
-      end
-    end
-  end)
   local sin, cos, random, Rand
   do
     local _obj_0 = math
@@ -36,6 +34,9 @@ if CLIENT then
   local EnabledSandbox = CreateConVar('cl_vpvb_sbox', 1, FCVAR_ARCHIVE, 'Controls whether viewpunch viewbob is active with the toolgun/physgun/camera equipped.')
   local enabled
   enabled = function(flavor, ply)
+    if ply:GetMoveType() == MOVETYPE_NOCLIP then
+      return false
+    end
     if not (Enabled:GetBool()) then
       return false
     end
@@ -49,9 +50,6 @@ if CLIENT then
       end
     end
     if not (EnabledTypes[flavor]:GetBool()) then
-      return false
-    end
-    if ply:GetMoveType() == MOVETYPE_NOCLIP then
       return false
     end
     return true

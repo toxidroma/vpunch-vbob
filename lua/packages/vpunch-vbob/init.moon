@@ -1,8 +1,5 @@
+import \Punch from require 'packages/vpunch-local', 'https://github.com/toxidroma/vpunch-local'
 if CLIENT
-    local Punch
-    install(gpm.LocatePackage('vpunch-local', 'https://github.com/toxidroma/vpunch-local'), true)\Then (pkg) ->
-        import \Punch from pkg\GetResult!
-        
     import sin, cos, random, Rand from math
     Multipliers     = {}
     EnabledTypes    = {}
@@ -15,6 +12,7 @@ if CLIENT
     EnabledSandbox = CreateConVar 'cl_vpvb_sbox', 1, FCVAR_ARCHIVE, 'Controls whether viewpunch viewbob is active with the toolgun/physgun/camera equipped.'
 
     enabled = (flavor, ply) ->
+        return false if ply\GetMoveType! == MOVETYPE_NOCLIP
         return false unless Enabled\GetBool!
         weapon = ply\GetActiveWeapon!
         if weapon\IsValid!
@@ -22,7 +20,6 @@ if CLIENT
                 when 'gmod_tool', 'weapon_physgun', 'gmod_camera'
                     return false unless EnabledSandbox\GetBool!
         return false unless EnabledTypes[flavor]\GetBool!
-        return false if ply\GetMoveType! == MOVETYPE_NOCLIP
         true
 
     detectFlavor = (ply) ->
