@@ -1,15 +1,12 @@
+local vplocal = require('packages/vpunch-local', 'https://github.com/toxidroma/vpunch-local')
 local Punch
-install(gpm.LocatePackage('vpunch-local', 'https://github.com/toxidroma/vpunch-local'), true):Then(function(pkg)
-  if CLIENT then
-    do
-      local _base_0 = pkg:GetResult()
-      local _fn_0 = _base_0.Punch
-      Punch = function(...)
-        return _fn_0(_base_0, ...)
-      end
-    end
+do
+  local _base_0 = vplocal
+  local _fn_0 = _base_0.Punch
+  Punch = function(...)
+    return _fn_0(_base_0, ...)
   end
-end)
+end
 if CLIENT then
   local sin, cos, random, Rand
   do
