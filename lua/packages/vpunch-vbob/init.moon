@@ -1,4 +1,4 @@
-import \Punch from require 'packages/vpunch-local', 'https://github.com/toxidroma/vpunch-local'
+import \Punch from install 'packages/vpunch-local', 'https://github.com/toxidroma/vpunch-local'
 if CLIENT
     import sin, cos, random, Rand from math
     Multipliers     = {}
