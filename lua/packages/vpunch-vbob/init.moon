@@ -56,8 +56,6 @@ if CLIENT
                 when 1 --right
                     -1
 
-            logger\Debug "PlayerFootstep: #{speed}, #{flavor}, #{side}, #{mult}"
-
             angle += Angle 2, side, side if \KeyDown IN_FORWARD
             angle += Angle -2, side, side if \KeyDown IN_BACK
             angle += Angle side, side, -2 if \KeyDown IN_MOVELEFT
@@ -86,8 +84,6 @@ if CLIENT
 
         mult = Multipliers.land\GetFloat!
 
-        logger\Debug "OnPlayerHitGround: #{speed}, #{mult}"
-
         div = if ply\KeyDown IN_DUCK
             80
         else
@@ -101,8 +97,6 @@ if CLIENT
         return unless enabled 'dmg', victim
 
         mult = Multipliers.dmg\GetFloat! * .5
-
-        logger\Debug "EntityTakeDamage: #{mult}"
 
         sting = -> random(3,3)*mult
         Punch Angle sting!, sting!, sting!
@@ -123,7 +117,6 @@ if CLIENT
         crouching = ply\Crouching!
         unless CrouchWatch == crouching
             CrouchWatch = crouching
-            logger\Debug "Tick (vp-vb crouch): #{CrouchWatch}, #{crouching}, #{mult}"
 
             mult = if crouching
                 return unless enabled 'crouch', ply
