@@ -1,5 +1,5 @@
-import \Punch from install 'packages/vpunch-local', 'https://github.com/toxidroma/vpunch-local'
 if CLIENT
+    import \Punch from install 'packages/vpunch-local', 'https://github.com/toxidroma/vpunch-local'
     import sin, cos, random, Rand from math
     Multipliers     = {}
     EnabledTypes    = {}
