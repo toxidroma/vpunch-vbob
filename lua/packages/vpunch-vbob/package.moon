@@ -1,6 +1,8 @@
 export *
 name    = 'vpunch-vbob'
-main    = 'init.lua'
-version = 000105
+version = 000107
+init    =
+    client: 'init.moon'
+    server: 'init.moon'
 autorun = true
 logger  = true
