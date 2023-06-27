@@ -1,6 +1,6 @@
-import \Punch from require 'packages/vpunch-local', 'https://github.com/toxidroma/vpunch-local'
+import \Punch from install 'packages/vpunch-local', 'https://github.com/toxidroma/vpunch-local'
 if CLIENT
-    import sin, cos, random, Rand from math
+    import abs, sin, cos, random, Rand from math
     Multipliers     = {}
     EnabledTypes    = {}
     for t in *{'slow', 'normal', 'run', 
@@ -56,8 +56,6 @@ if CLIENT
                 when 1 --right
                     -1
 
-            logger\Debug "PlayerFootstep: #{speed}, #{flavor}, #{side}, #{mult}"
-
             angle += Angle 2, side, side if \KeyDown IN_FORWARD
             angle += Angle -2, side, side if \KeyDown IN_BACK
             angle += Angle side, side, -2 if \KeyDown IN_MOVELEFT
@@ -86,8 +84,6 @@ if CLIENT
 
         mult = Multipliers.land\GetFloat!
 
-        logger\Debug "OnPlayerHitGround: #{speed}, #{mult}"
-
         div = if ply\KeyDown IN_DUCK
             80
         else
@@ -96,15 +92,20 @@ if CLIENT
         Punch Angle speed / div * mult * .5, 0, 0
         nil --preventing moon's implicit return from making a busted hook, again
 
-    hook.Add 'EntityTakeDamage', tostring(_PKG), (victim, dmginfo) ->
-        return unless victim == LocalPlayer!
-        return unless enabled 'dmg', victim
 
-        mult = Multipliers.dmg\GetFloat! * .5
+    gameevent.Listen'player_hurt'
+    hook.Add 'player_hurt', 'discombobulate', (data) ->
+        lp = LocalPlayer!        
+        return unless data.userid == lp\UserID!
+        return unless enabled 'dmg', lp
 
-        logger\Debug "EntityTakeDamage: #{mult}"
+        mult = Multipliers.dmg\GetFloat!
 
-        sting = -> random(3,3)*mult
+        lp.previousHealth or= lp\GetMaxHealth!
+        diff = abs data.health - lp.previousHealth
+        lp.previousHealth = data.health
+
+        sting = -> random(-diff,diff)*mult
         Punch Angle sting!, sting!, sting!
         nil --you get it by now
 
@@ -123,7 +124,6 @@ if CLIENT
         crouching = ply\Crouching!
         unless CrouchWatch == crouching
             CrouchWatch = crouching
-            logger\Debug "Tick (vp-vb crouch): #{CrouchWatch}, #{crouching}, #{mult}"
 
             mult = if crouching
                 return unless enabled 'crouch', ply
